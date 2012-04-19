@@ -13,18 +13,21 @@ class Library(object):
     
     @property
     def sections(self):
+        """ returns a list of all sections. """
         elem = self.server.query("/library/sections")
         seclist = [Section(e.attrib['title'], e.attrib['key'], self.server) for e in elem]
         return seclist
     
     @property
     def shows(self):
+        """ returns a list of all sections with type 'show'. """
         elem = self.server.query("/library/sections")
         seclist = [Section(e.attrib['title'], e.attrib['key'], self.server) for e in elem if e.attrib['type'] == 'show']
         return seclist
 
     @property
     def movies(self):
+        """ returns a list of all sections with type 'movie'. """
         elem = self.server.query("/library/sections")
         seclist = [Section(e.attrib['title'], e.attrib['key'], self.server) for e in elem if e.attrib['type'] == 'movie']
         return seclist
