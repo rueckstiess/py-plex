@@ -29,10 +29,6 @@ class Client(object):
         
         
     def playVideo(self, video, offset=0):
-        print self.server.address
-        print self.server.port
-        print video.key
-
         path = "http://%s:%d%s" % (self.server.address, self.server.port, video.key)
         command = "/playMedia?key=%s&path=%s" % (video.key, path)
         if offset:

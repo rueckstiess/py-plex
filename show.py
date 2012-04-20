@@ -1,4 +1,5 @@
 from season import Season
+from episode import Episode
 
 class Show(object):
     def __init__(self, element, server):
@@ -40,10 +41,14 @@ class Show(object):
 
     def getSeason(self, num):
         """ returns the season with the index number `num` or None if it doesn't exist. """
-        pass
+        return next((s for s in self.seasons if s.index == num), None)
 
     def getAllEpisodes(self):
         """ returns a list of all episodes of the show independent of seasons. """
-        pass
-    
+        key = '/'.join(self.key.split('/')[:-1]) + '/allLeaves'
+        element = self.server.query(key)
+        episodes = [Episode(e, self.server) for e in element if ('type' in e.attrib) and (e.attrib['type'] == 'episode')]
+        return episodes
+        
+
     
