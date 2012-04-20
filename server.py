@@ -7,7 +7,7 @@ from xml.etree.ElementTree import XML
 
 class Server(object):
     
-    def __init__(self, address, port):
+    def __init__(self, address, port=32400):
         # TODO: clean up address, remove http:// etc
         
         # remove slash at end of address
