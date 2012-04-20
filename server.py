@@ -14,7 +14,7 @@ class Server(object):
         if address[-1] == '/':
             address = address[:-1]
         self.address = address
-        self.port = port
+        self.port = int(port)
         
         
     def execute(self, path):
@@ -33,7 +33,7 @@ class Server(object):
             path = path[1:]
             
         # open url and get raw xml data
-        try: 
+        try:
             response = urllib2.urlopen("http://%s:%d/%s" % (self.address, self.port, path))
         except urllib2.URLError, e:
             print e
@@ -45,10 +45,10 @@ class Server(object):
     
     
     def __str__(self):
-        return "<PlexServer: %s:%d/>" % (self.address, self.port) 
+        return "<Server: %s:%d/>" % (self.address, self.port) 
     
     def __repr__(self):
-        return "<PlexServer: %s:%d/>" % (self.address, self.port) 
+        return "<Server: %s:%d/>" % (self.address, self.port) 
     
     
     @property

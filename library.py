@@ -5,10 +5,10 @@ class Library(object):
         self.server = server
     
     def __str__(self):
-        return "<Library: %s>" % server
+        return "<Library: %s>" % self.server
     
     def __repr__(self):
-        return "<Library: %s>" % server
+        return "<Library: %s>" % self.server
     
     
     @property

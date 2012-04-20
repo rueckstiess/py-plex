@@ -1,4 +1,6 @@
 from movie import Movie
+from show import Show
+from episode import Episode
 
 class Section(object):
     def __init__(self, element, server):
@@ -59,10 +61,9 @@ class Section(object):
                 obj = Movie(e, self.server)
             if type_ == 'show':                
                 # append show
-                obj = 'Show'
+                obj = Show(e, self.server)
             if type_ == 'episode':
-                # append episode
-                obj = 'Episode'
+                obj = Episode(e, self.server)
             
             content.append(obj)
              
