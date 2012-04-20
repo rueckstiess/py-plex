@@ -1,8 +1,10 @@
+from movie import Movie
+
 class Section(object):
-    def __init__(self, name, key, server):
-        self.name = name
-        self.key = int(key)
-        self.type = type
+    def __init__(self, element, server):
+        self.title = element.attrib['title']
+        self.key = int(element.attrib['key'])
+        self.type = element.attrib['type']
         self.server = server
     
         # get container and categories
@@ -10,10 +12,10 @@ class Section(object):
         self.categories = {d.attrib['key']:d.attrib['title'] for d in self.container if not 'search' in d.attrib}
 
     def __str__(self):
-        return "<Section: %s>" % self.name
+        return "<Section: %s>" % self.title
 
     def __repr__(self):
-        return "<Section: %s>" % self.name
+        return "<Section: %s>" % self.title
     
     def getCategories(self):
         return self.categories
@@ -54,7 +56,7 @@ class Section(object):
             type_ = e.attrib['type']
             if type_ == 'movie':
                 # append movie
-                obj = 'Movie'
+                obj = Movie(e, self.server)
             if type_ == 'show':                
                 # append show
                 obj = 'Show'
@@ -62,7 +64,6 @@ class Section(object):
                 # append episode
                 obj = 'Episode'
             
-            obj += ": %s" % e.attrib['title']
             content.append(obj)
              
         return content
