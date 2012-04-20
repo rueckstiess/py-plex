@@ -14,7 +14,4 @@ rock = shows.getContent('all')[0]
 # print rock.title
 # print rock.key
 
-seasons = rock.seasons
-
-s = seasons[0]
-print s
+print rock.getNextUnwatchedEpisode()

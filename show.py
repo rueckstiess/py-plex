@@ -49,6 +49,23 @@ class Show(object):
         element = self.server.query(key)
         episodes = [Episode(e, self.server) for e in element if ('type' in e.attrib) and (e.attrib['type'] == 'episode')]
         return episodes
+    
+    def getNextUnwatchedEpisode(self):
+        """ returns the episode that follows the last watched episode in the show over 
+            all seasons. if all are watched, return None. 
+        """
+        key = '/'.join(self.key.split('/')[:-1]) + '/allLeaves'
+        element = self.server.query(key)
+        
+        prev = None
+        for e in reversed(element):
+            if ('viewCount' in e.attrib) and (e.attrib['viewCount'] == '1'):
+                if prev == None:
+                    return None
+                else:
+                    return Episode(prev, self.server)
+            prev = e
+        return Episode(element[0], self.server)
         
 
     
