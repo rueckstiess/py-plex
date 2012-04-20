@@ -1,11 +1,9 @@
 from server import Server
 
-server = Server("http://10.0.0.2/", 32400)
+server = Server("10.0.0.2", 32400)
+client = server.clients[0]
+movies = server.library.movies[0]
+m = movies.getContent('newest')[0]
 
-
-shows = server.library.shows[0]
-
-# print shows.getCategories()
-# print shows.getSubCategories('collection')
-
-print shows.getContent('all')
+client.playVideo(m, m.offset)
+# client.runCommand('stop')
