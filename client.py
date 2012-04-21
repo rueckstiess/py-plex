@@ -8,7 +8,7 @@ class Client(object):
         self.port = element.attrib['port']
         self.version = element.attrib['version']
     
-        self.navigationCommands = ['moveUp, moveDown, moveLeft, moveRight, pageUp, pageDown, nextLetter, previousLetter, select, back, contextMenu, toggleOSD']
+        self.navigationCommands = ['moveUp', 'moveDown', 'moveLeft', 'moveRight', 'pageUp', 'pageDown', 'nextLetter', 'previousLetter', 'select', 'back', 'contextMenu', 'toggleOSD']
         self.playbackCommands = ['play', 'pause', 'stop', 'rewind', 'fastForward', 'stepForward', 'bigStepForward', 'stepBack', 'bigStepBack', 'skipNext', 'skipPrevious']
         self.applicationCommands = ['playFile', 'playMedia', 'screenshot', 'sendString', 'sendKey', 'sendVirtualKey']
     
