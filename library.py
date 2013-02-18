@@ -38,7 +38,7 @@ class Library(object):
 
 
     def findAll(self, name, type=None):
-        query = "/search?query=%s" % name
+        query = "/search?query=%s" % name.replace(" ", "%20")
         element = self.server.query(query)
         
         items = []
