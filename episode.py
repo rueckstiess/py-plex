@@ -8,7 +8,7 @@ class Episode(object):
         self.summary = element.attrib['summary']
         self.index = int(element.attrib['index'])
         
-        self.viewed = ('viewCount' in element.attrib) and (element.attrib['viewCount'] == '1')
+        self.viewed = ('viewCount' in element.attrib) and (element.attrib['viewCount'] >= '1')
         self.offset = int(element.attrib['viewOffset']) if 'viewOffset' in element.attrib else 0
         self.file = element.find('.Media/Part').attrib['file']
     
