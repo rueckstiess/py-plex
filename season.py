@@ -1,7 +1,7 @@
 from episode import Episode
 
 class Season(object):
-    
+
     def __init__(self, element, server):
         self.key = element.attrib['key']
         self.server = server
@@ -9,14 +9,14 @@ class Season(object):
         self.title = element.attrib['title']
         self.index = int(element.attrib['index'])
         self.episodes_ = []
-    
+
     def __len__(self):
         return self.size
-    
+
     def __iter__(self):
         for e in self.episodes:
             yield e
-        
+
     def __str__(self):
         return "<Season: %d>" % self.index
 
@@ -25,7 +25,7 @@ class Season(object):
 
     def getEpisode(self, num):
         pass
-    
+
     @property
     def episodes(self):
         if not self.episodes_:
@@ -34,4 +34,3 @@ class Season(object):
 
         return self.episodes_
 
-    
