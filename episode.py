@@ -1,21 +1,19 @@
-class Episode(object):
-    
+from video import Video
+from media import Media
+class Episode(Video):
+
     def __init__(self, element, server):
-        self.server = server
-        self.key = element.attrib['key']
+        super(Episode, self).__init__(element, server)
+
         self.type = 'episode'
-        self.title = element.attrib['title']
-        self.summary = element.attrib['summary']
-        self.index = int(element.attrib['index'])
-        
-        self.viewed = ('viewCount' in element.attrib) and (element.attrib['viewCount'] >= '1')
-        self.offset = int(element.attrib['viewOffset']) if 'viewOffset' in element.attrib else 0
-        self.file = element.find('.Media/Part').attrib['file']
-    
+        try:
+            self.index = int(element.attrib['index'])
+        except KeyError as e:
+            print "Missing key in element: ", e.message
+
     def __str__(self):
         return "<Episode: %s (%d)>" % (self.title, self.index)
-        
+
     def __repr__(self):
         return "<Episode: %s (%d)>" % (self.title, self.index)
 
-    
